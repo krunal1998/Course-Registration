@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Page</title>
+</head>
+<body>
+    <p>{{ topic.name|upper }}</p>
+    <p>Length: {{ topic.length }}</p>
+    <br>
+    <p>Related Courses:</p>
+    <ol>
+        {% for course in course_list %}
+            <li> {{ course.title }} </li>
+        {% endfor %}
+    </ol>
+    <p><a href="{% url 'myapp:index' %}">Home Page</a></p>
+</body>
+</html>

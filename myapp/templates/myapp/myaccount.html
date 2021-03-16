@@ -1,0 +1,39 @@
+{% extends 'myapp/base.html' %}
+{% block title %}
+    MyAccount Page
+{% endblock %}
+{% block body_block %}
+
+    {% if message %}
+        <div class="alert alert-info">  {{ message }}   </div>
+
+    {% else %}
+        <p> First Name: <b>{{ first_name }}</b></p>
+        <p> Last Name: <b>{{ last_name }}</b></p>
+        <h4>Topics Interested In:</h4>
+        <ol>
+            {% for topic in interestedTopics %}
+                <li> {{ topic.name }}</li>
+            {% endfor %}
+        </ol>
+
+        <h4>Ordered Courses:</h4>
+        <ol>
+            {% for c in registeredCourses %}
+                <li> {{ c.title }}</li>
+            {% endfor %}
+        </ol>
+        <hr/>
+        {% if student_image %}
+            <img src="{{ student_image.url }}" height="100" width="100" alt="{{ student_image.name }}"/>
+            <br/>
+        {% endif %}
+        <form method="post" action="{% url 'myapp:myaccount' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" name="submit1" value="Upload Image" class="btn btn-primary"/>
+        </form>
+
+    {% endif %}
+
+{% endblock %}

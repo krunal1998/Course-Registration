@@ -1,0 +1,15 @@
+{% extends 'myapp/base.html' %}
+{% block title %}
+    Order Response Page
+{% endblock %}
+
+
+{% block body_block %}
+    <h2>Ordered Courses:</h2>
+    <ol>
+        {% for c in courses %}
+            <li> {{ c.title }}</li>
+        {% endfor %}
+    </ol>
+
+{% endblock %}
